@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { auth } from '../firebase';
+import { signOut } from "firebase/auth";
 
 export default function Header() {
   const location = useLocation();
@@ -7,57 +9,40 @@ export default function Header() {
   const isTeacherView = location.pathname.startsWith('/admin');
   const [menuOpen, setMenuOpen] = useState(false);
 
-  if (location.pathname === '/admin-login') {
+  if (location.pathname === '/admin-login' || isTeacherView) {
     return null;
   }
 
-  const handleLogout = () => {
-    // TODO: hook this up to actual Firebase Auth sign-out when auth is added
-    navigate('/');
-    setMenuOpen(false);
-  };
-
-
- 
-  const links = isTeacherView
-    ? [
-        { label: "ප්‍රශ්න එකතු කරන්න", path: "/admin/add-questions", active: location.pathname === "/admin/add-questions" 
-        }, 
-        { label: "විෂය කරුණු ඇතුලත් කිරීම", path: "/admin/materials", active: location.pathname === "/admin/materials"},
-        { label: "ළමයින්ගේ ලකුණු වාර්තා", path: "/admin/results", active: location.pathname === "/admin/results" }
-      ]
-    : [
-        { label: "විෂය මාලාව", path: "/", active: false },
-        { label: "ප්‍රශ්නමාලාව", path: "/", active: true }
-      ];
+  const links = [
+    { label: "විෂය මාලාව", path: "/", active: false },
+    { label: "ප්‍රශ්නමාලාව", path: "/", active: true }
+  ];
 
   return (
-    <header className="bg-orange-50 border-b border-orange-100 relative">
-      <div className="px-4 md:px-8 py-3 flex items-center justify-between md:grid md:grid-cols-3 md:items-center">
+    <header className="bg-[#ADDFF1]/25 border-b border-[#ADDFF1] w-full relative z-50">
+      <div className="w-full px-4 sm:px-6 py-3.5 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          {/* Hamburger toggle - mobile only, left corner */}
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1"
+            className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1 focus:outline-none"
             aria-label="Toggle menu"
           >
-            <span className={`block w-5 h-0.5 bg-amber-800 transition-all ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-amber-800 transition-all ${menuOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-amber-800 transition-all ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-[#003152] transition-all ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-[#003152] transition-all ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-[#003152] transition-all ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
           </button>
-          <span className="text-base md:text-lg font-extrabold text-amber-800">MathsHub</span>
+          <span className="text-base sm:text-2xl font-extrabold text-[#003152] tracking-tight">MathsHub</span>
         </div>
 
-        {/* Desktop nav links - centered, hidden on mobile */}
-        <nav className="hidden md:flex items-center justify-center gap-6">
+        <nav className="hidden md:flex items-center gap-6">
           {links.map((link) => (
             <Link
               key={link.label}
               to={link.path}
-              className={`text-sm font-semibold whitespace-nowrap ${
+              className={`text-lg font-semibold whitespace-nowrap ${
                 link.active
-                  ? "text-amber-700 border-b-2 border-amber-700 pb-1"
-                  : "text-amber-900 hover:text-amber-700"
+                  ? "text-[#003152] border-b-2 border-[#003152] pb-0.5"
+                  : "text-[#003152]/80 hover:text-[#003152]"
               }`}
             >
               {link.label}
@@ -65,54 +50,25 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Right side: main action button always visible */}
-        <div className="flex items-center gap-2 md:justify-end">
-          {isTeacherView ? (
-            <button
-              onClick={handleLogout}
-              className="hidden md:inline-block text-sm font-semibold text-amber-900 hover:text-amber-700 border border-amber-300 px-3 py-1.5 rounded-full transition-all whitespace-nowrap"
-            >
-              🚪 ඉවත් වන්න
-            </button>
-          ) : (
-            <Link
-              to="/admin"
-              className="hidden md:inline-block bg-amber-800 hover:bg-amber-900 text-white text-sm font-bold px-4 py-2 rounded-full transition-all whitespace-nowrap"
-            >
-              👨‍🏫 ගුරු පිවිසුම
-            </Link>
-          )}
-
-          {/* Mobile-only: compact main action button */}
-          {isTeacherView ? (
-            <button
-              onClick={handleLogout}
-              className="md:hidden text-xs font-semibold text-amber-900 hover:text-amber-700 border border-amber-300 px-2.5 py-1 rounded-full transition-all whitespace-nowrap"
-            >
-              🚪 ඉවත් වන්න
-            </button>
-          ) : (
-            <Link
-              to="/admin"
-              className="md:hidden bg-amber-800 hover:bg-amber-900 text-white text-xs font-bold px-3 py-1.5 rounded-full transition-all whitespace-nowrap"
-            >
-              👨‍🏫 ගුරු පිවිසුම
-            </Link>
-          )}
+        <div className="flex items-center">
+          <Link
+            to="/admin-login"
+            className="bg-[#003152] hover:bg-[#003152]/90 text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all whitespace-nowrap shadow-sm"
+          >
+            👨‍🏫 ගුරු පිවිසුම
+          </Link>
         </div>
       </div>
 
-      {/* Mobile dropdown menu */}
-      {/* Mobile dropdown menu */}
       {menuOpen && (
-        <div className="md:hidden bg-orange-50 border-t border-orange-100 px-4 py-3 flex flex-col gap-3">
+        <div className="md:hidden absolute top-full left-0 w-7/12 sm:w-1/2 bg-white border-b border-r border-[#ADDFF1] shadow-md p-3 flex flex-col gap-1">
           {links.map((link) => (
             <Link
               key={link.label}
               to={link.path}
               onClick={() => setMenuOpen(false)}
-              className={`text-sm font-semibold ${
-                link.active ? "text-amber-700" : "text-amber-900 hover:text-amber-700"
+              className={`text-sm font-semibold py-2 px-3 transition-colors ${
+                link.active ? "bg-[#ADDFF1]/30 text-[#003152]" : "text-gray-700 hover:bg-gray-50 hover:text-[#003152]"
               }`}
             >
               {link.label}
@@ -120,7 +76,6 @@ export default function Header() {
           ))}
         </div>
       )}
-      
     </header>
   );
 }
