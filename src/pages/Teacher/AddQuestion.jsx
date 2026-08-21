@@ -53,26 +53,24 @@ export default function AddQuestion() {
   };
 
   return (
-    // වටේට ඉඩ (Space) තැබීම සහ ෆෝම් එක මැදට ගැනීම (max-w-4xl mx-auto my-6 md:my-10)
     <div className="max-w-5xl mx-auto my-5 md:my-5 px-4 md:px-0">
       
       {/* සුදු පාට පසුබිම සහ Card පෙනුම */}
-      <div className="bg-white p-6 md:p-10 rounded-2xl shadow-sm border border-gray-100">
+      <div className="bg-white p-6 md:p-10 rounded-2xl shadow-sm border border-[#ADDFF1]">
         
-        {/* ෆෝම් එකේ මාතෘකාව (අවශ්‍ය නම් පමණක් තියාගන්න) */}
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 border-b pb-4">
+        {/* ෆෝම් එකේ මාතෘකාව */}
+        <h2 className="text-1.5xl font-bold text-[#003152] mb-6 border-b border-[#ADDFF1] pb-4">
           නව ප්‍රශ්නයක් ඇතුළත් කිරීම
         </h2>
 
-        {/* ඔයාගේ මුල් ෆෝම් එක කිසිම වෙනසක් නොකර මෙතන ඇතුළත් කර ඇත */}
         <form onSubmit={handleSaveQuestion} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-orange-50 p-4 rounded-xl border border-orange-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#ADDFF1]/20 p-4 rounded-xl border border-[#ADDFF1]">
             <div>
-              <label className="block text-gray-700 font-semibold mb-1">ශ්‍රේණිය (Grade):</label>
+              <label className="block text-[#003152] font-semibold mb-1">ශ්‍රේණිය (Grade):</label>
               <select
                 value={grade}
                 onChange={handleGradeChange}
-                className="w-full border border-orange-200 p-3 rounded-lg outline-none focus:ring-2 focus:ring-amber-400 bg-white"
+                className="w-full border border-[#ADDFF1] p-3 rounded-lg outline-none focus:ring-2 focus:ring-[#003152] bg-white text-gray-800"
               >
                 <option value="">-- තෝරන්න --</option>
                 <option value="6">6 ශ්‍රේණිය</option>
@@ -82,12 +80,12 @@ export default function AddQuestion() {
               </select>
             </div>
             <div>
-              <label className="block text-gray-700 font-semibold mb-1">පාඩමේ නම (Lesson):</label>
+              <label className="block text-[#003152] font-semibold mb-1">පාඩමේ නම (Lesson):</label>
               <select
                 value={lesson}
                 onChange={(e) => setLesson(e.target.value)}
                 disabled={!grade}
-                className="w-full border border-orange-200 p-3 rounded-lg outline-none focus:ring-2 focus:ring-amber-400 bg-white disabled:bg-gray-200"
+                className="w-full border border-[#ADDFF1] p-3 rounded-lg outline-none focus:ring-2 focus:ring-[#003152] bg-white disabled:bg-gray-200 text-gray-800"
               >
                 <option value="">-- පාඩම තෝරන්න --</option>
                 {grade && lessonsData[grade].map((lessonName, index) => (
@@ -98,11 +96,11 @@ export default function AddQuestion() {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">ගැටලුව (Question):</label>
+            <label className="block text-[#003152] font-semibold mb-2">ගැටලුව (Question):</label>
             <textarea
               value={questionText}
               onChange={(e) => setQuestionText(e.target.value)}
-              className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-amber-400 outline-none"
+              className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-[#003152] outline-none text-gray-800"
               placeholder="උදා: 2x + 5 = 15 නම්, x හි අගය සොයන්න."
               rows="3"
             ></textarea>
@@ -110,29 +108,29 @@ export default function AddQuestion() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-700 text-sm font-semibold mb-1">පිළිතුර 1:</label>
-              <input type="text" value={opt1} onChange={(e) => setOpt1(e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:ring-2 focus:ring-amber-400" />
+              <label className="block text-[#003152] text-sm font-semibold mb-1">පිළිතුර 1:</label>
+              <input type="text" value={opt1} onChange={(e) => setOpt1(e.target.value)} className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-[#003152] text-gray-800" />
             </div>
             <div>
-              <label className="block text-gray-700 text-sm font-semibold mb-1">පිළිතුර 2:</label>
-              <input type="text" value={opt2} onChange={(e) => setOpt2(e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:ring-2 focus:ring-amber-400" />
+              <label className="block text-[#003152] text-sm font-semibold mb-1">පිළිතුර 2:</label>
+              <input type="text" value={opt2} onChange={(e) => setOpt2(e.target.value)} className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-[#003152] text-gray-800" />
             </div>
             <div>
-              <label className="block text-gray-700 text-sm font-semibold mb-1">පිළිතුර 3:</label>
-              <input type="text" value={opt3} onChange={(e) => setOpt3(e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:ring-2 focus:ring-amber-400" />
+              <label className="block text-[#003152] text-sm font-semibold mb-1">පිළිතුර 3:</label>
+              <input type="text" value={opt3} onChange={(e) => setOpt3(e.target.value)} className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-[#003152] text-gray-800" />
             </div>
             <div>
-              <label className="block text-gray-700 text-sm font-semibold mb-1">පිළිතුර 4:</label>
-              <input type="text" value={opt4} onChange={(e) => setOpt4(e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:ring-2 focus:ring-amber-400" />
+              <label className="block text-[#003152] text-sm font-semibold mb-1">පිළිතුර 4:</label>
+              <input type="text" value={opt4} onChange={(e) => setOpt4(e.target.value)} className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-[#003152] text-gray-800" />
             </div>
           </div>
 
-          <div className="bg-orange-50 p-4 rounded-xl border border-orange-100">
-            <label className="block text-amber-800 font-semibold mb-2">නිවැරදි පිළිතුර කුමක්ද?</label>
+          <div className="bg-[#ADDFF1]/20 p-4 rounded-xl border border-[#ADDFF1]">
+            <label className="block text-[#003152] font-semibold mb-2">නිවැරදි පිළිතුර කුමක්ද?</label>
             <select
               value={correctAnswer}
               onChange={(e) => setCorrectAnswer(e.target.value)}
-              className="w-full border border-orange-200 p-3 rounded-lg outline-none focus:ring-2 focus:ring-amber-400 bg-white"
+              className="w-full border border-[#ADDFF1] p-3 rounded-lg outline-none focus:ring-2 focus:ring-[#003152] bg-white text-gray-800"
             >
               <option value="">-- තෝරන්න --</option>
               {opt1 && <option value={opt1}>{opt1}</option>}
@@ -145,7 +143,7 @@ export default function AddQuestion() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-amber-800 text-white font-bold text-lg py-4 rounded-lg hover:bg-amber-900 transition-all shadow-md disabled:bg-gray-400"
+            className="w-full bg-[#003152] text-white font-bold text-lg py-4 rounded-lg hover:bg-[#003152]/90 transition-all shadow-md disabled:bg-gray-400 cursor-pointer"
           >
             {loading ? 'සුරකිමින් පවතී...' : 'දත්ත ගබඩාවට එකතු කරන්න 💾'}
           </button>

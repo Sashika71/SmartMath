@@ -10,12 +10,12 @@ const lessonsData = {
   "9": ["වර්ගමූලය", "ත්‍රිකෝණමිතිය", "සමාන්තර ශ්‍රේණි", "ලඝුගණක", "කුලක"]
 };
 
-// Icon + color per grade, matching the reference UI (peach cards, colored icon badges)
+// Icon + color per grade, updated with custom blue palette styling
 const gradeMeta = {
-  "6": { icon: "🧮", color: "text-orange-500" },
-  "7": { icon: "📐", color: "text-orange-500" },
-  "8": { icon: "Σ", color: "text-orange-500" },
-  "9": { icon: "𝑓", color: "text-orange-500" }
+  "6": { icon: "🧮", color: "text-[#003152]" },
+  "7": { icon: "📐", color: "text-[#003152]" },
+  "8": { icon: "Σ", color: "text-[#003152]" },
+  "9": { icon: "𝑓", color: "text-[#003152]" }
 };
 
 export default function StudentPage() {
@@ -95,28 +95,28 @@ export default function StudentPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <main className="max-w-3xl mx-auto px-4 py-10">
-        <div className="bg-white rounded-2xl shadow-lg p-6 md:p-10 border border-gray-100">
+        <div className="bg-white rounded-2xl shadow-lg p-6 md:p-10 border border-[#ADDFF1]">
 
           {!selectedGrade ? (
             <div>
-              <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 text-center mb-2">
+              <h1 className="text-3xl md:text-4xl font-extrabold text-[#003152] text-center mb-2">
                 ගණිත ගැටලු <br /> විසඳමු
               </h1>
-              <p className="text-center text-gray-500 mb-8 text-sm">
-                පුහුණුවීම් ආරම්භ කිරීමට ඔබේ ශ්‍රේණිය තෝරන්න.
-              </p>
+              <p className="text-center text-slate-700 mb-8 text-sm">
+  පුහුණුවීම් ආරම්භ කිරීමට ඔබේ ශ්‍රේණිය තෝරන්න.
+</p>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {["6", "7", "8", "9"].map((g) => (
                   <button
                     key={g}
                     onClick={() => setSelectedGrade(g)}
-                    className="flex flex-col items-center justify-center gap-3 bg-orange-50 hover:bg-orange-100 border border-orange-100 rounded-2xl py-8 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+                    className="flex flex-col items-center justify-center gap-3 bg-[#ADDFF1]/20 hover:bg-[#ADDFF1]/40 border border-[#ADDFF1] rounded-2xl py-8 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
                   >
                     <span className={`text-3xl font-bold ${gradeMeta[g].color}`}>
                       {gradeMeta[g].icon}
                     </span>
-                    <span className="font-bold text-gray-700">{g} ශ්‍රේණිය</span>
+                    <span className="font-bold text-[#003152]">{g} ශ්‍රේණිය</span>
                   </button>
                 ))}
               </div>
@@ -125,14 +125,13 @@ export default function StudentPage() {
             <div>
               <button 
                 onClick={() => setSelectedGrade('')} 
-                className="text-amber-800 hover:text-amber-900 mb-4 p-2 -ml-2 rounded-full hover:bg-orange-50 transition-all focus:outline-none flex items-center justify-center"
+                className="text-[#003152] hover:text-[#003152]/80 mb-4 p-2 -ml-2 rounded-full hover:bg-[#ADDFF1]/20 transition-all focus:outline-none flex items-center justify-center"
                 aria-label="ආපසු යන්න"
               >
-               
                 <HiChevronLeft className="w-8 h-8" />
               </button>
               
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
+              <h2 className="text-xl font-bold text-[#003152] mb-4">
                 {selectedGrade} ශ්‍රේණියට අදාළ පාඩම තෝරන්න
               </h2>
               <div className="space-y-2">
@@ -143,7 +142,7 @@ export default function StudentPage() {
                       setSelectedLesson(les);
                       fetchQuestionsForStudent(selectedGrade, les);
                     }}
-                    className="w-full text-left bg-orange-50 border border-orange-100 p-4 rounded-xl font-semibold text-gray-700 hover:bg-orange-100 hover:border-orange-300 transition-all"
+                    className="w-full text-left bg-[#ADDFF1]/20 border border-[#ADDFF1] p-4 rounded-xl font-semibold text-[#003152] hover:bg-[#ADDFF1]/40 hover:border-[#003152]/30 transition-all"
                   >
                     📚 {les}
                   </button>
@@ -151,7 +150,7 @@ export default function StudentPage() {
               </div>
             </div>
           ) : studentLoading ? (
-            <p className="text-center py-8 text-gray-600">ප්‍රශ්න පූරණය වෙමින් පවතී...</p>
+            <p className="text-center py-8 text-[#003152]">ප්‍රශ්න පූරණය වෙමින් පවතී...</p>
           ) : questionsList.length === 0 ? (
             <div className="text-center py-8">
               <p className="text-red-600 font-semibold mb-4">මෙම පාඩමට තවම ප්‍රශ්න ඇතුළත් කර නැත!</p>
@@ -164,14 +163,14 @@ export default function StudentPage() {
             </div>
           ) : showScore ? (
             <div className="text-center py-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">සුභ පැතුම්! 🎉</h3>
-              <p className="text-lg text-gray-600 mb-4">
-                ඔබ ලබාගත් ලකුණු: <span className="font-bold text-orange-600">{score} / {questionsList.length}</span>
+              <h3 className="text-2xl font-bold text-[#003152] mb-2">සුභ පැතුම්! 🎉</h3>
+              <p className="text-lg text-[#003152]/80 mb-4">
+                ඔබ ලබාගත් ලකුණු: <span className="font-bold text-[#003152]">{score} / {questionsList.length}</span>
               </p>
 
               {!isSaved ? (
-                <form onSubmit={handleSaveResult} className="bg-orange-50 p-4 rounded-xl border border-orange-100 space-y-3 mt-4">
-                  <label className="block text-gray-700 font-semibold text-sm">
+                <form onSubmit={handleSaveResult} className="bg-[#ADDFF1]/20 p-4 rounded-xl border border-[#ADDFF1] space-y-3 mt-4">
+                  <label className="block text-[#003152] font-semibold text-sm">
                     ගුරුවරයාට පෙන්වීම සඳහා ඔබේ නම ඇතුළත් කරන්න:
                   </label>
                   <input
@@ -179,12 +178,12 @@ export default function StudentPage() {
                     value={studentName}
                     onChange={(e) => setStudentName(e.target.value)}
                     placeholder="උදා: ඉසුරු පෙරේරා"
-                    className="w-full border p-3 rounded-lg outline-none focus:ring-2 focus:ring-orange-400"
+                    className="w-full border border-[#ADDFF1] p-3 rounded-lg outline-none focus:ring-2 focus:ring-[#003152]"
                     required
                   />
                   <button
                     type="submit"
-                    className="w-full bg-orange-500 text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition-all"
+                    className="w-full bg-[#003152] text-white font-bold py-3 rounded-lg hover:bg-[#003152]/90 transition-all"
                   >
                     ගුරුවරයාට ලකුණු යවන්න 📤
                   </button>
@@ -194,7 +193,7 @@ export default function StudentPage() {
                   <p className="text-green-700 font-semibold mb-4">✅ ඔබේ ලකුණු සාර්ථකව සේව් විය!</p>
                   <button
                     onClick={() => { setSelectedLesson(''); setQuestionsList([]); }}
-                    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition-all"
+                    className="bg-[#003152] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#003152]/90 transition-all"
                   >
                     වෙනත් පාඩමකට යන්න
                   </button>
@@ -203,11 +202,11 @@ export default function StudentPage() {
             </div>
           ) : (
             <div>
-              <div className="flex justify-between items-center mb-4 text-sm text-gray-500 border-b pb-2">
+              <div className="flex justify-between items-center mb-4 text-sm text-[#003152]/70 border-b border-[#ADDFF1] pb-2">
                 <span>පාඩම: {selectedLesson}</span>
                 <span>ප්‍රශ්නය: {currentQuestionIndex + 1} / {questionsList.length}</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-6">
+              <h3 className="text-xl font-bold text-[#003152] mb-6">
                 {questionsList[currentQuestionIndex].text}
               </h3>
               <div className="space-y-3">
@@ -215,7 +214,7 @@ export default function StudentPage() {
                   <button
                     key={idx}
                     onClick={() => handleAnswerClick(opt)}
-                    className="w-full text-left bg-gray-50 border-2 border-gray-200 p-4 rounded-xl font-semibold hover:bg-blue-50 hover:border-blue-500 transition-all"
+                    className="w-full text-left bg-gray-50 border-2 border-gray-200 p-4 rounded-xl font-semibold hover:bg-[#ADDFF1]/30 hover:border-[#003152] transition-all"
                   >
                     {opt}
                   </button>
