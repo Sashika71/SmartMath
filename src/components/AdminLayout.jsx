@@ -38,7 +38,7 @@ export default function AdminLayout() {
           >
             <HiMenu className="w-6 h-6" />
           </button>
-          <span className="text-lg font-extrabold text-[#003152]">MathsHub</span>
+          <span className="text-lg font-extrabold text-[#003152]">SmartMath</span>
         </div>
         <button
           onClick={handleLogout}
@@ -60,7 +60,7 @@ export default function AdminLayout() {
             <div>
               <div className="flex items-center justify-between mb-8 px-2">
                 <div>
-                  <h1 className="text-xl font-extrabold text-[#003152]">MathsHub</h1>
+                  <h1 className="text-xl font-extrabold text-[#003152]">SmartMath</h1>
                   <p className="text-xs text-gray-500 mt-0.5">ගුරු කළමනාකරණ පද්ධතිය</p>
                 </div>
                 <button 
@@ -110,7 +110,7 @@ export default function AdminLayout() {
       <aside className="hidden md:flex w-72 bg-white border-r border-[#ADDFF1] flex-col justify-between p-6 shadow-sm sticky top-0 h-screen overflow-y-auto">
         <div>
           <div className="mb-8 px-2">
-            <h1 className="text-2xl font-extrabold text-[#003152]">MathsHub</h1>
+            <h1 className="text-2xl font-extrabold text-[#003152]">SmartMath</h1>
             <p className="text-sm text-gray-500 mt-1">ගුරු කළමනාකරණ පද්ධතිය</p>
           </div>
 

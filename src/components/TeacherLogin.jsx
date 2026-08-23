@@ -64,7 +64,7 @@ export default function TeacherLogin({ onLoginSuccess }) {
   return (
     <div className="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl border-t-8 border-[#003152] mt-10">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-extrabold text-[#003152] tracking-wide">MathsHub</h1>
+        <h1 className="text-3xl font-extrabold text-[#003152] tracking-wide">SmartMath</h1>
         <p className="text-slate-700 text-sm mt-1">ගුරු පිවිසුම</p>
       </div>
 

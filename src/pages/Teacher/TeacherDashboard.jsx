@@ -10,7 +10,7 @@ export default function TeacherDashboard() {
       <div className="mb-8 bg-white p-6 rounded-xl shadow-sm border border-[#ADDFF1]">
         <h1 className="text-2xl md:text-3xl font-bold text-[#003152]">ආයුබෝවන්! 👋</h1>
         <p className="text-[#003152]/80 mt-2 text-sm md:text-base">
-          MathsHub පාලක පුවරුවට සාදරයෙන් පිළිගනිමු. 
+          SmartMath පාලක පුවරුවට සාදරයෙන් පිළිගනිමු. 
         </p>
       </div>
 
