@@ -31,7 +31,7 @@ export default function Header() {
             <span className={`block w-5 h-0.5 bg-[#003152] transition-all ${menuOpen ? "opacity-0" : ""}`} />
             <span className={`block w-5 h-0.5 bg-[#003152] transition-all ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
           </button>
-          <span className="text-base sm:text-2xl font-extrabold text-[#003152] tracking-tight">MathsHub</span>
+          <span className="text-base sm:text-2xl font-extrabold text-[#003152] tracking-tight">SmartMath</span>
         </div>
 
         <nav className="hidden md:flex items-center gap-6">
