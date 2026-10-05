@@ -10,7 +10,6 @@ const lessonsData = {
   "9": ["වර්ගමූලය", "ත්‍රිකෝණමිතිය", "සමාන්තර ශ්‍රේණි", "ලඝුගණක", "කුලක"]
 };
 
-// Icon + color per grade, updated with custom blue palette styling
 const gradeMeta = {
   "6": { icon: "🧮", color: "text-[#003152]" },
   "7": { icon: "📐", color: "text-[#003152]" },
@@ -98,18 +97,19 @@ export default function StudentPage() {
         <div className="bg-white rounded-2xl shadow-lg p-6 md:p-10 border border-[#ADDFF1]">
 
           {!selectedGrade ? (
-            <div>
+            <div id="grade-selection-view">
               <h1 className="text-3xl md:text-4xl font-extrabold text-[#003152] text-center mb-2">
                 ගණිත ගැටලු <br /> විසඳමු
               </h1>
               <p className="text-center text-slate-700 mb-8 text-sm">
-  පුහුණුවීම් ආරම්භ කිරීමට ඔබේ ශ්‍රේණිය තෝරන්න.
-</p>
+                පුහුණුවීම් ආරම්භ කිරීමට ඔබේ ශ්‍රේණිය තෝරන්න.
+              </p>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {["6", "7", "8", "9"].map((g) => (
                   <button
                     key={g}
+                    id={`grade-btn-${g}`}
                     onClick={() => setSelectedGrade(g)}
                     className="flex flex-col items-center justify-center gap-3 bg-[#ADDFF1]/20 hover:bg-[#ADDFF1]/40 border border-[#ADDFF1] rounded-2xl py-8 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
                   >
@@ -122,8 +122,9 @@ export default function StudentPage() {
               </div>
             </div>
           ) : !selectedLesson ? (
-            <div>
+            <div id="lesson-selection-view">
               <button 
+                id="back-to-grades-btn"
                 onClick={() => setSelectedGrade('')} 
                 className="text-[#003152] hover:text-[#003152]/80 mb-4 p-2 -ml-2 rounded-full hover:bg-[#ADDFF1]/20 transition-all focus:outline-none flex items-center justify-center"
                 aria-label="ආපසු යන්න"
@@ -138,6 +139,7 @@ export default function StudentPage() {
                 {lessonsData[selectedGrade].map((les, idx) => (
                   <button
                     key={idx}
+                    id={`lesson-btn-${idx}`}
                     onClick={() => {
                       setSelectedLesson(les);
                       fetchQuestionsForStudent(selectedGrade, les);
@@ -150,11 +152,12 @@ export default function StudentPage() {
               </div>
             </div>
           ) : studentLoading ? (
-            <p className="text-center py-8 text-[#003152]">ප්‍රශ්න පූරණය වෙමින් පවතී...</p>
+            <p id="loading-msg" className="text-center py-8 text-[#003152]">ප්‍රශ්න පූරණය වෙමින් පවතී...</p>
           ) : questionsList.length === 0 ? (
-            <div className="text-center py-8">
+            <div id="no-questions-msg" className="text-center py-8">
               <p className="text-red-600 font-semibold mb-4">මෙම පාඩමට තවම ප්‍රශ්න ඇතුළත් කර නැත!</p>
               <button
+                id="back-to-lessons-btn"
                 onClick={() => setSelectedLesson('')}
                 className="bg-gray-500 text-white px-4 py-2 rounded-lg"
               >
@@ -162,10 +165,10 @@ export default function StudentPage() {
               </button>
             </div>
           ) : showScore ? (
-            <div className="text-center py-6">
+            <div id="score-view" className="text-center py-6">
               <h3 className="text-2xl font-bold text-[#003152] mb-2">සුභ පැතුම්! 🎉</h3>
               <p className="text-lg text-[#003152]/80 mb-4">
-                ඔබ ලබාගත් ලකුණු: <span className="font-bold text-[#003152]">{score} / {questionsList.length}</span>
+                ඔබ ලබාගත් ලකුණු: <span id="final-score-text" className="font-bold text-[#003152]">{score} / {questionsList.length}</span>
               </p>
 
               {!isSaved ? (
@@ -174,6 +177,7 @@ export default function StudentPage() {
                     ගුරුවරයාට පෙන්වීම සඳහා ඔබේ නම ඇතුළත් කරන්න:
                   </label>
                   <input
+                    id="student-name-input"
                     type="text"
                     value={studentName}
                     onChange={(e) => setStudentName(e.target.value)}
@@ -182,6 +186,7 @@ export default function StudentPage() {
                     required
                   />
                   <button
+                    id="submit-score-btn"
                     type="submit"
                     className="w-full bg-[#003152] text-white font-bold py-3 rounded-lg hover:bg-[#003152]/90 transition-all"
                   >
@@ -189,9 +194,10 @@ export default function StudentPage() {
                   </button>
                 </form>
               ) : (
-                <div className="mt-4">
+                <div id="saved-success-msg" className="mt-4">
                   <p className="text-green-700 font-semibold mb-4">✅ ඔබේ ලකුණු සාර්ථකව සේව් විය!</p>
                   <button
+                    id="restart-quiz-btn"
                     onClick={() => { setSelectedLesson(''); setQuestionsList([]); }}
                     className="bg-[#003152] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#003152]/90 transition-all"
                   >
@@ -201,18 +207,19 @@ export default function StudentPage() {
               )}
             </div>
           ) : (
-            <div>
+            <div id="quiz-question-view">
               <div className="flex justify-between items-center mb-4 text-sm text-[#003152]/70 border-b border-[#ADDFF1] pb-2">
-                <span>පාඩම: {selectedLesson}</span>
-                <span>ප්‍රශ්නය: {currentQuestionIndex + 1} / {questionsList.length}</span>
+                <span id="current-lesson-label">පාඩම: {selectedLesson}</span>
+                <span id="question-count-label">ප්‍රශ්නය: {currentQuestionIndex + 1} / {questionsList.length}</span>
               </div>
-              <h3 className="text-xl font-bold text-[#003152] mb-6">
+              <h3 id="question-text-heading" className="text-xl font-bold text-[#003152] mb-6">
                 {questionsList[currentQuestionIndex].text}
               </h3>
               <div className="space-y-3">
                 {questionsList[currentQuestionIndex].options.map((opt, idx) => (
                   <button
                     key={idx}
+                    id={`option-btn-${idx}`}
                     onClick={() => handleAnswerClick(opt)}
                     className="w-full text-left bg-gray-50 border-2 border-gray-200 p-4 rounded-xl font-semibold hover:bg-[#ADDFF1]/30 hover:border-[#003152] transition-all"
                   >
