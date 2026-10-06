@@ -49,10 +49,11 @@ export default function InstallPWA() {
     <button
       type="button"
       onClick={handleInstall}
-      className="bg-[#003152] hover:bg-[#003152]/90 text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all whitespace-nowrap shadow-sm"
+      className="shrink-0 bg-[#003152] hover:bg-[#003152]/90 text-white text-[11px] sm:text-sm font-bold px-2.5 sm:px-4 py-2 rounded-full transition-all whitespace-nowrap shadow-sm"
       aria-label="Install SmartMath app"
     >
-      Install app
+      <span className="sm:hidden">Install</span>
+      <span className="hidden sm:inline">Install app</span>
     </button>
   );
 }

@@ -18,8 +18,8 @@ export default function Header() {
 
   return (
     <header className="bg-[#ADDFF1]/25 border-b border-[#ADDFF1] w-full relative z-50">
-      <div className="w-full px-4 sm:px-6 py-3.5 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div className="w-full px-3 sm:px-6 py-3.5 flex items-center justify-between gap-2">
+        <div className="flex min-w-0 items-center gap-2">
           <button
             id="mobile-menu-toggle"
             onClick={() => setMenuOpen((prev) => !prev)}
@@ -30,7 +30,7 @@ export default function Header() {
             <span className={`block w-5 h-0.5 bg-[#003152] transition-all ${menuOpen ? "opacity-0" : ""}`} />
             <span className={`block w-5 h-0.5 bg-[#003152] transition-all ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
           </button>
-          <span className="text-base sm:text-2xl font-extrabold text-[#003152] tracking-tight">SmartMath</span>
+          <span className="truncate text-base sm:text-2xl font-extrabold text-[#003152] tracking-tight">SmartMath</span>
         </div>
 
         <nav className="hidden md:flex items-center gap-6">
@@ -50,12 +50,12 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-2">
           <InstallPWA />
           <Link
             id="teacher-login-btn"
             to="/admin-login"
-            className="bg-[#003152] hover:bg-[#003152]/90 text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all whitespace-nowrap shadow-sm"
+            className="bg-[#003152] hover:bg-[#003152]/90 text-white text-[11px] sm:text-sm font-bold px-2.5 sm:px-4 py-2 rounded-full transition-all whitespace-nowrap shadow-sm"
           >
             👨‍🏫 ගුරු පිවිසුම
           </Link>

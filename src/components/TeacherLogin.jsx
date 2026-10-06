@@ -81,46 +81,47 @@ export default function TeacherLogin({ onLoginSuccess }) {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl border-t-8 border-[#003152] mt-10">
+    <main className="min-h-screen min-h-[100dvh] bg-slate-50 px-4 py-6 sm:px-6 sm:py-10 flex items-center justify-center">
+      <div className="w-full max-w-md min-h-[460px] sm:min-h-[520px] mx-auto bg-white p-5 sm:p-8 rounded-2xl shadow-xl border-t-8 border-[#003152] flex flex-col">
 
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-extrabold text-[#003152] tracking-wide">
-          SmartMath
-        </h1>
+        <div className="text-center mb-8 sm:mb-10">
+          <h1 className="text-3xl font-extrabold text-[#003152] tracking-wide">
+            SmartMath
+          </h1>
 
-        <p className="text-slate-700 text-sm mt-1">
-          ගුරු පිවිසුම
-        </p>
-      </div>
-
-      {loginError && (
-        <div
-          id="loginError"
-          className="bg-red-100 text-red-700 p-3 rounded-lg mb-4 text-sm text-center"
-        >
-          {loginError}
+          <p className="text-slate-700 text-sm mt-1">
+            ගුරු පිවිසුම
+          </p>
         </div>
-      )}
 
-      {resetError && (
-        <div
-          id="resetError"
-          className="bg-red-100 text-red-700 p-3 rounded-lg mb-4 text-sm text-center"
-        >
-          {resetError}
-        </div>
-      )}
+        {loginError && (
+          <div
+            id="loginError"
+            className="bg-red-100 text-red-700 p-3 rounded-lg mb-4 text-sm text-center"
+          >
+            {loginError}
+          </div>
+        )}
 
-      {resetMessage && (
-        <div
-          id="resetMessage"
-          className="bg-green-100 text-green-800 p-3 rounded-lg mb-4 text-sm text-center font-medium"
-        >
-          {resetMessage}
-        </div>
-      )}
+        {resetError && (
+          <div
+            id="resetError"
+            className="bg-red-100 text-red-700 p-3 rounded-lg mb-4 text-sm text-center"
+          >
+            {resetError}
+          </div>
+        )}
 
-      <form onSubmit={handleLogin} className="space-y-4">
+        {resetMessage && (
+          <div
+            id="resetMessage"
+            className="bg-green-100 text-green-800 p-3 rounded-lg mb-4 text-sm text-center font-medium"
+          >
+            {resetMessage}
+          </div>
+        )}
+
+        <form onSubmit={handleLogin} className="space-y-5">
 
         {/* Email */}
         <div>
@@ -136,7 +137,7 @@ export default function TeacherLogin({ onLoginSuccess }) {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-[#003152]"
+            className="w-full border border-gray-300 p-3.5 rounded-lg outline-none focus:ring-2 focus:ring-[#003152]"
             required
           />
         </div>
@@ -156,7 +157,7 @@ export default function TeacherLogin({ onLoginSuccess }) {
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-gray-300 p-3 pr-12 rounded-lg outline-none focus:ring-2 focus:ring-[#003152]"
+              className="w-full border border-gray-300 p-3.5 pr-12 rounded-lg outline-none focus:ring-2 focus:ring-[#003152]"
               required
             />
 
@@ -188,25 +189,25 @@ export default function TeacherLogin({ onLoginSuccess }) {
           }
         </button>
 
-      </form>
+        </form>
 
-      {/* Forgot Password */}
-      <div className="mt-4 text-center">
-        <button
-          id="forgotPasswordBtn"
-          type="button"
-          onClick={handleForgotPassword}
-          disabled={isResetting}
-          className="text-sm text-[#003152] hover:text-[#003152]/80 hover:underline transition-colors bg-transparent border-none cursor-pointer disabled:text-gray-400"
-        >
-          {isResetting
-            ? 'ලින්ක් එක යවමින් පවතී...'
-            : 'මුරපදය අමතකද? (Forgot Password)'
-          }
-        </button>
+        {/* Forgot Password */}
+        <div className="mt-4 text-center">
+          <button
+            id="forgotPasswordBtn"
+            type="button"
+            onClick={handleForgotPassword}
+            disabled={isResetting}
+            className="text-sm text-[#003152] hover:text-[#003152]/80 hover:underline transition-colors bg-transparent border-none cursor-pointer disabled:text-gray-400"
+          >
+            {isResetting
+              ? 'ලින්ක් එක යවමින් පවතී...'
+              : 'මුරපදය අමතකද? (Forgot Password)'
+            }
+          </button>
+        </div>
+
       </div>
-
-    </div>
+    </main>
   );
 }
-
