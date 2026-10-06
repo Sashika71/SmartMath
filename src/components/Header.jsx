@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
-import { signOut } from "firebase/auth";
+import { Link, useLocation } from 'react-router-dom';
+import InstallPWA from './InstallPWA';
 
 export default function Header() {
   const location = useLocation();
-  const navigate = useNavigate();
   const isTeacherView = location.pathname.startsWith('/admin');
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -52,7 +50,8 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
+          <InstallPWA />
           <Link
             id="teacher-login-btn"
             to="/admin-login"
