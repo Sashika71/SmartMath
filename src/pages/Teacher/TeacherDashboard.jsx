@@ -19,6 +19,7 @@ export default function TeacherDashboard() {
         
         {/* Card 1: Add Questions */}
         <div 
+          id="card-add-questions"
           onClick={() => navigate('/admin/add-questions')}
           className="bg-white rounded-xl p-6 shadow-sm border-t-4 border-amber-500 hover:shadow-md hover:-translate-y-1 transition-all duration-200 cursor-pointer flex flex-col items-center text-center group"
         >
@@ -36,6 +37,7 @@ export default function TeacherDashboard() {
 
         {/* Card 2: Student Results */}
         <div 
+          id="card-student-results"
           onClick={() => navigate('/admin/results')}
           className="bg-white rounded-xl p-6 shadow-sm border-t-4 border-green-500 hover:shadow-md hover:-translate-y-1 transition-all duration-200 cursor-pointer flex flex-col items-center text-center group"
         >
@@ -53,6 +55,7 @@ export default function TeacherDashboard() {
 
         {/* Card 3: Upload Materials */}
         <div 
+          id="card-materials"
           onClick={() => navigate('/admin/materials')}
           className="bg-white rounded-xl p-6 shadow-sm border-t-4 border-blue-500 hover:shadow-md hover:-translate-y-1 transition-all duration-200 cursor-pointer flex flex-col items-center text-center group"
         >

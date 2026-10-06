@@ -53,6 +53,7 @@ export default function StudentResults() {
           <div>
             <label className="block text-sm font-semibold text-[#003152] mb-1.5">ශ්‍රේණිය</label>
             <select
+              id="filter-grade-select"
               value={filterGrade}
               onChange={(e) => {
                 setFilterGrade(e.target.value);
@@ -71,6 +72,7 @@ export default function StudentResults() {
           <div>
             <label className="block text-sm font-semibold text-[#003152] mb-1.5">පාඩම</label>
             <select
+              id="filter-lesson-select"
               value={filterLesson}
               onChange={(e) => setFilterLesson(e.target.value)}
               disabled={!filterGrade}
@@ -85,7 +87,7 @@ export default function StudentResults() {
         </div>
 
         {!filterGrade || !filterLesson ? (
-          <div className="text-center py-12 bg-[#ADDFF1]/10 rounded-2xl border border-dashed border-[#ADDFF1] flex flex-col items-center justify-center gap-2 px-4">
+          <div id="results-info-box" className="text-center py-12 bg-[#ADDFF1]/10 rounded-2xl border border-dashed border-[#ADDFF1] flex flex-col items-center justify-center gap-2 px-4">
             <HiInformationCircle className="w-8 h-8 text-[#003152]" />
             <p className="text-[#003152] font-semibold text-sm">
               සිසුන්ගේ ලකුණු වාර්තා බැලීම සඳහා ඉහතින් ශ්‍රේණිය සහ පාඩම තෝරන්න.
@@ -94,10 +96,10 @@ export default function StudentResults() {
         ) : resultsLoading ? (
           <p className="text-center py-10 text-[#003152] font-semibold animate-pulse">දත්ත පූරණය වෙමින් පවතී...</p>
         ) : filteredResults.length === 0 ? (
-          <p className="text-center py-10 text-gray-500">මෙම පාඩම සඳහා තවම කිසිදු ළමයෙක් ලකුණු යවා නැත.</p>
+          <p id="no-results-msg" className="text-center py-10 text-gray-500">මෙම පාඩම සඳහා තවම කිසිදු ළමයෙක් ලකුණු යවා නැත.</p>
         ) : (
           <div className="overflow-x-auto rounded-xl border border-[#ADDFF1] shadow-sm">
-            <table className="w-full border-collapse bg-white text-left text-sm md:text-base">
+            <table id="results-table" className="w-full border-collapse bg-white text-left text-sm md:text-base">
               <thead>
                 <tr className="bg-[#003152] text-white">
                   <th className="p-3.5 md:p-4 font-semibold whitespace-nowrap">නම</th>

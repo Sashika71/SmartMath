@@ -7,6 +7,20 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
+## Deploy
+
+Build and deploy the PWA to Firebase Hosting with:
+
+```bash
+npm run deploy
+```
+
+The build step is required because Firebase Hosting publishes the `dist` directory. After deployment, open the live HTTPS URL in Chrome or Edge and check DevTools > Application:
+
+- **Manifest** should load `/manifest.webmanifest` and show both icons.
+- **Service Workers** should show `/sw.js` as activated.
+- The browser's install icon or **Install SmartMath** option may only appear after a reload. Incognito mode, an old service worker, or a previously cached manifest can prevent the prompt; use DevTools > Application > Storage > Clear site data and reload.
+
 ## React Compiler
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).

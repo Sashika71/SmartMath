@@ -14,21 +14,21 @@ export default function AdminLayout() {
       await signOut(auth);
       navigate('/');
     } catch (error) {
-      console.error("Logout දෝෂයක් මතු විය: ", error);
+      console.error("Logout error: ", error);
     }
   };
 
   const menuItems = [
-    { label: "පාලක පුවරුව (Dashboard)", path: "/admin", icon: <HiHome className="w-5 h-5" /> },
-    { label: "ප්‍රශ්න එකතු කරන්න", path: "/admin/add-questions", icon: <HiOutlineDocumentAdd className="w-5 h-5" /> },
-    { label: "විෂය කරුණු ඇතුළත් කිරීම", path: "/admin/materials", icon: <HiOutlineBookOpen className="w-5 h-5" /> },
-    { label: "ළමයින්ගේ ලකුණු වාර්තා", path: "/admin/results", icon: <HiOutlineChartBar className="w-5 h-5" /> },
+    { label: "පාලක පුවරුව (Dashboard)", path: "/admin", icon: <HiHome className="w-5 h-5" />, id: "nav-dashboard" },
+    { label: "ප්‍රශ්න එකතු කරන්න", path: "/admin/add-questions", icon: <HiOutlineDocumentAdd className="w-5 h-5" />, id: "nav-add-questions" },
+    { label: "විෂය කරුණු ඇතුළත් කිරීම", path: "/admin/materials", icon: <HiOutlineBookOpen className="w-5 h-5" />, id: "nav-materials" },
+    { label: "ළමයින්ගේ ලකුණු වාර්තා", path: "/admin/results", icon: <HiOutlineChartBar className="w-5 h-5" />, id: "nav-results" },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
       
-      {/* 1. Mobile Top Bar (මොබයිල් එකේදී පමණක් උඩින් පෙන්වන Header එක) */}
+      {/* 1. Mobile Top Bar */}
       <div className="md:hidden bg-white border-b border-[#ADDFF1] px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow-sm">
         <div className="flex items-center gap-2">
           <button
@@ -41,6 +41,7 @@ export default function AdminLayout() {
           <span className="text-lg font-extrabold text-[#003152]">SmartMath</span>
         </div>
         <button
+          id="mobile-logout-btn"
           onClick={handleLogout}
           className="text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-all flex items-center gap-1"
         >
@@ -49,7 +50,7 @@ export default function AdminLayout() {
         </button>
       </div>
 
-      {/* 2. Mobile Sidebar Overlay & Drawer (මොබයිල් එකේ මෙනුව ක්ලික් කළ විට පාවී එන කොටස) */}
+      {/* 2. Mobile Sidebar Overlay & Drawer */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 flex md:hidden">
           <div 
@@ -77,6 +78,7 @@ export default function AdminLayout() {
                   return (
                     <Link
                       key={item.path}
+                      id={item.id}
                       to={item.path}
                       onClick={() => setMobileMenuOpen(false)}
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-sm transition-all ${
@@ -106,7 +108,7 @@ export default function AdminLayout() {
         </div>
       )}
 
-      {/* 3. Desktop Sidebar (ඩෙස්ක්ටොප් එකේදී වම්පස ස්ථාවරව පවතින කොටස) */}
+      {/* 3. Desktop Sidebar */}
       <aside className="hidden md:flex w-72 bg-white border-r border-[#ADDFF1] flex-col justify-between p-6 shadow-sm sticky top-0 h-screen overflow-y-auto">
         <div>
           <div className="mb-8 px-2">
@@ -120,6 +122,7 @@ export default function AdminLayout() {
               return (
                 <Link
                   key={item.path}
+                  id={item.id}
                   to={item.path}
                   className={`flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-sm transition-all ${
                     isActive
@@ -137,6 +140,7 @@ export default function AdminLayout() {
 
         <div className="pt-6 border-t border-gray-100 mt-6">
           <button
+            id="desktop-logout-btn"
             onClick={handleLogout}
             className="w-full flex items-center justify-center gap-2 bg-red-50 text-red-600 hover:bg-red-100 font-semibold px-4 py-3 rounded-xl transition-all text-sm cursor-pointer"
           >
