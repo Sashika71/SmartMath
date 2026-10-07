@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import InstallPWA from './InstallPWA';
 
 export default function Header() {
   const location = useLocation();
@@ -51,7 +50,6 @@ export default function Header() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-          <InstallPWA />
           <Link
             id="teacher-login-btn"
             to="/admin-login"

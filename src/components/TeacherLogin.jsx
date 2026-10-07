@@ -81,7 +81,7 @@ export default function TeacherLogin({ onLoginSuccess }) {
   };
 
   return (
-    <main className="min-h-screen min-h-[100dvh] bg-slate-50 px-4 py-6 sm:px-6 sm:py-10 flex items-center justify-center">
+    <main className="min-h-screen bg-slate-50 px-4 py-6 sm:px-6 sm:py-10 flex items-center justify-center">
       <div className="w-full max-w-md min-h-[460px] sm:min-h-[520px] mx-auto bg-white p-5 sm:p-8 rounded-2xl shadow-xl border-t-8 border-[#003152] flex flex-col">
 
         <div className="text-center mb-8 sm:mb-10">

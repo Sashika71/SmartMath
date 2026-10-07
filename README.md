@@ -19,7 +19,7 @@ The build step is required because Firebase Hosting publishes the `dist` directo
 
 - **Manifest** should load `/manifest.webmanifest` and show both icons.
 - **Service Workers** should show `/sw.js` as activated.
-- The browser's install icon or **Install SmartMath** option may only appear after a reload. Incognito mode, an old service worker, or a previously cached manifest can prevent the prompt; use DevTools > Application > Storage > Clear site data and reload.
+- The browser's install icon or **Install SmartMath** option may only appear after a reload. Installation is provided by the browser; there is no in-app install button. Incognito mode, an old service worker, or a previously cached manifest can prevent the option; use DevTools > Application > Storage > Clear site data and reload.
 
 ## React Compiler
 
