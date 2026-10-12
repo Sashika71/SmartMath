@@ -5,8 +5,6 @@ A Sinhala-language mathematics quiz web app for students in grades 6–9, design
 **Live demo:** _add your Firebase Hosting URL here_
 **Source code:** https://smartmath-a9p10.web.app
 
-![SmartMath screenshot](docs/screenshot-student.png)
-<!-- Add 2–3 screenshots: student quiz, teacher dashboard, results page -->
 
 ## Why I built it
 
