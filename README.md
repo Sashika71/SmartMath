@@ -94,19 +94,6 @@ Vite will show the local URL, usually `http://localhost:5173`.
 | `/admin/add-questions` | Add a multiple-choice question |
 | `/admin/results` | View student quiz results |
 
-## Data Model (Firestore)
-
-**`questions`**
-```text
-grade: string
-lesson: string
-text: string
-options: string[]
-correct: string
-createdAt: timestamp
-```
-
-**`student_results`** — stores the score, total number of questions, and submission timestamp for each completed quiz.
 
 ## Project Structure
 
